@@ -12,19 +12,34 @@
     <div class="container" id="grid">
     </div>
 
+    <div class="slider">
+        <input id ="slider" type="range" min="4" max="100" value="16" oninput="rangeValue.innerText = this.value">
+        <p id="rangeValue">16</p>
+    </div>
+
 
 
     <script>
 
+        const slider = document.querySelector('#slider');
+        slider.addEventListener('input', createGrid);
+
 
         const grid = document.querySelector('#grid');
 
-        function createGrid(width) {
+        function createGrid(e) {
 
-            grid.style.gridTemplateColumns = `repeat(${width}, auto)`;
+            erase();
+
+            let value = this.value;
+
+            console.log(value);
+
+
+            grid.style.gridTemplateColumns = `repeat(${value}, auto)`;
 
             
-            for (let i = 0; i < (width **2); i++) {
+            for (let i = 0; i < (value **2); i++) {
                 const div = document.createElement('div');
                 div.classList.add('cell')
                 grid.appendChild(div);
@@ -33,15 +48,19 @@
 
 
         function color() {
-            this.style.backgroundColor = 'hsl(300, 100%, 70%)';
+            this.style.backgroundColor = 'orange';
         }
 
         function erase() {
 
+            cell.forEach((cell) => {
+                grid.removeChild(cell);
+            })
+
         }
 
 
-        createGrid(50);
+
 
         const cell = document.querySelectorAll('.cell');
 
