@@ -1,0 +1,38 @@
+body {
+    display: grid;
+    place-items: stretch;
+    margin: auto;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    
+
+
+}
+
+
+.cell {
+    border-width: .25px;
+    border-style: solid;
+    border-color: black;
+    margin: 0;
+    padding: 0;
+
+
+   
+    
+    
+    
+}
+
+#grid {
+    display: grid;
+    border-color: red;
+    border-width: 25px;
+    border-radius: 20px;
+    height: 500px;
+    width: 500px;
+    border-style: solid;
+}
