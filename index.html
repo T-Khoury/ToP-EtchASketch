@@ -23,10 +23,7 @@
 
 
     <script>
-
-        
-
-       
+ 
         const grid = document.querySelector('#grid');
 
         function createGrid(width) {
@@ -40,7 +37,6 @@
                 grid.appendChild(div);
             }
         }
-
 
 
         function randomColor() {
@@ -69,14 +65,6 @@
             })
         }
 
-        function erase() {
-            const cell = document.querySelectorAll('.cell');
-            cell.forEach((cell) => {
-                cell.removeAttribute('id');
-        
-                cell.style.backgroundColor = 'white';
-            })
-        }
 
         function eraseGrid () {
             const cell = document.querySelectorAll('.cell');
@@ -136,28 +124,6 @@
 
         createGrid(16);
         paintBlack();
-
-
-      
-
-        
-
-        
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
 
     </script>
 </body>
