@@ -12,9 +12,12 @@
     <div class="container" id="grid">
     </div>
 
-    <div class="slider">
+    <div class="controls">
         <input id ="slider" type="range" min="4" max="100" value="16" oninput="rangeValue.innerText = this.value">
         <p id="rangeValue">16</p>
+        <button id="random">Random Color</button>
+        <button id="black">Black</button>
+        <button id="shade">Shade</button>
     </div>
 
 
@@ -39,20 +42,38 @@
         }
 
 
-        function color() {
-            this.style.backgroundColor = 'hsl(300, 100%, 70%)';
+
+        function randomColor() {
+            let rValue = Math.floor(Math.random() * 256);
+            let gValue = Math.floor(Math.random() * 256);
+            let bValue = Math.floor(Math.random() * 256);
+            this.style.backgroundColor = `rgb(${rValue},${gValue},${bValue})`;
         }
 
-        function paint() {
+        function blackColor() {
+            this.style.backgroundColor = 'black';
+        }
+
+        
+        function paintColor() {
             const cell = document.querySelectorAll('.cell');
             cell.forEach((cell) => {
-                cell.addEventListener('mouseenter', color)
+                cell.addEventListener('mouseenter', randomColor)
+            })
+        }
+        
+        function paintBlack() {
+            const cell = document.querySelectorAll('.cell');
+            cell.forEach((cell) => {
+                cell.addEventListener('mouseenter', blackColor);
             })
         }
 
         function erase() {
             const cell = document.querySelectorAll('.cell');
             cell.forEach((cell) => {
+                cell.removeAttribute('id');
+        
                 cell.style.backgroundColor = 'white';
             })
         }
@@ -64,17 +85,56 @@
             })
         }
 
+        function resetGrid () {
+            eraseGrid();
+            createGrid(slider.value);
+        }
+
+
+
         const slider = document.querySelector('#slider');
         slider.addEventListener('input', () => {
             eraseGrid();
             createGrid(slider.value);
-            paint();
         });
-        function test() {
-            console.log(slider.value)
-        }
+
+        const randomColorButton = document.querySelector('#random');
+        randomColorButton.addEventListener('click', () => {
+            resetGrid();
+            paintColor();
+        });
+
+        const blackButton = document.querySelector('#black');
+        blackButton.addEventListener('click', () => {
+            resetGrid();
+            paintBlack();
+        });
+
+        const shadeButton = document.querySelector('#shade');
+        shade.addEventListener('click', () => {
+            resetGrid();
+            const cell = document.querySelectorAll('.cell');
+            cell.forEach((cell) => {
+                cell.addEventListener('mouseenter', () => {
+                    if (!(cell.getAttribute('id'))) {
+                        cell.setAttribute('id', '100')
+                    }
+                    else {
+                        let blackValue = parseInt(cell.id);
+                        blackValue -= 10;
+                        cell.setAttribute('id', `${blackValue}`);
+                        if (blackValue >= 0) {
+                            cell.style.backgroundColor = `hsl(0, 0%, ${blackValue}%)`;
+                        };
+                    }
+                })
+            })
+
+        })
+        
+
         createGrid(16);
-        paint();
+
 
       
 
