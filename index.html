@@ -15,7 +15,7 @@
     <div class="controls">
         <input id ="slider" type="range" min="4" max="100" value="16" oninput="rangeValue.innerText = this.value">
         <p id="rangeValue">16</p>
-        <button id="random">Random Color</button>
+        <button id="random">Color</button>
         <button id="black">Black</button>
         <button id="shade">Shade</button>
     </div>
@@ -96,6 +96,7 @@
         slider.addEventListener('input', () => {
             eraseGrid();
             createGrid(slider.value);
+            paintBlack();
         });
 
         const randomColorButton = document.querySelector('#random');
@@ -134,6 +135,7 @@
         
 
         createGrid(16);
+        paintBlack();
 
 
       
