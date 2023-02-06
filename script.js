@@ -82,7 +82,8 @@
             cell.forEach((cell) => {
                 cell.addEventListener('mouseenter', () => {
                     if (!(cell.getAttribute('id'))) {
-                        cell.setAttribute('id', '100')
+                        cell.setAttribute('id', '90');
+                        cell.style.backgroundColor = 'hsl(0, 0%, 90%)';
                     }
                     else {
                         let blackValue = parseInt(cell.id);
