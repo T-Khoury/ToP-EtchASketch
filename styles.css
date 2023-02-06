@@ -19,13 +19,15 @@ body {
     border-color: black;
     margin: 0;
     padding: 0;
-
-
-   
-    
     
     
 }
+
+.erase {
+    background-color: white;
+}
+
+
 
 #grid {
     display: grid;

@@ -21,25 +21,17 @@
 
     <script>
 
-        const slider = document.querySelector('#slider');
-        slider.addEventListener('input', createGrid);
+        
 
-
+       
         const grid = document.querySelector('#grid');
 
-        function createGrid(e) {
+        function createGrid(width) {
 
-            erase();
-
-            let value = this.value;
-
-            console.log(value);
+            grid.style.gridTemplateColumns = `repeat(${width}, auto)`;
 
 
-            grid.style.gridTemplateColumns = `repeat(${value}, auto)`;
-
-            
-            for (let i = 0; i < (value **2); i++) {
+            for (let i = 0; i < (width **2); i++) {
                 const div = document.createElement('div');
                 div.classList.add('cell')
                 grid.appendChild(div);
@@ -48,26 +40,51 @@
 
 
         function color() {
-            this.style.backgroundColor = 'orange';
+            this.style.backgroundColor = 'hsl(300, 100%, 70%)';
+        }
+
+        function paint() {
+            const cell = document.querySelectorAll('.cell');
+            cell.forEach((cell) => {
+                cell.addEventListener('mouseenter', color)
+            })
         }
 
         function erase() {
+            const cell = document.querySelectorAll('.cell');
+            cell.forEach((cell) => {
+                cell.style.backgroundColor = 'white';
+            })
+        }
 
+        function eraseGrid () {
+            const cell = document.querySelectorAll('.cell');
             cell.forEach((cell) => {
                 grid.removeChild(cell);
             })
-
         }
 
+        const slider = document.querySelector('#slider');
+        slider.addEventListener('input', () => {
+            eraseGrid();
+            createGrid(slider.value);
+            paint();
+        });
+        function test() {
+            console.log(slider.value)
+        }
+        createGrid(16);
+        paint();
+
+      
+
+        
+
+        
 
 
 
-        const cell = document.querySelectorAll('.cell');
-
-        cell.forEach((cell) => {
-            cell.addEventListener('mouseenter', color)
-        })
-
+       
 
 
 
